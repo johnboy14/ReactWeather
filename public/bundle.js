@@ -112,7 +112,7 @@
 	__webpack_require__(250);
 	$(document).foundation();
 
-	__webpack_require__(254);
+	__webpack_require__(256);
 
 	ReactDOM.render(React.createElement(
 	  Router,
@@ -24860,7 +24860,11 @@
 
 	  onSearch: function onSearch(e) {
 	    e.preventDefault();
-	    alert("Not yet wired up");
+	    var location = encodeURIComponent(this.refs.location.value);
+	    if (location.length > 0) {
+	      this.refs.location.value = "";
+	      window.location.hash = "#/?location=" + location;
+	    }
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -24918,7 +24922,7 @@
 	            React.createElement(
 	              "li",
 	              null,
-	              React.createElement("input", { type: "search", placeholder: "Search weather by city" })
+	              React.createElement("input", { type: "search", placeholder: "Search weather by city", ref: "location" })
 	            ),
 	            React.createElement(
 	              "li",
@@ -24959,7 +24963,9 @@
 
 	    this.setState({
 	      isLoading: true,
-	      errorMessage: undefined
+	      errorMessage: undefined,
+	      location: undefined,
+	      temp: undefined
 	    });
 
 	    openWeatherMap.getTemp(location).then(function (temp) {
@@ -24974,6 +24980,20 @@
 	        errorMessage: errorMessage.message
 	      });
 	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var location = this.props.location.query.location;
+	    if (location && location.length > 0) {
+	      this.handleSearch(location);
+	      window.location.hash = "";
+	    }
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(props) {
+	    var location = props.location.query.location;
+	    if (location && location.length > 0) {
+	      this.handleSearch(location);
+	      window.location.hash = "";
+	    }
 	  },
 	  render: function render() {
 	    var _state = this.state;
@@ -26773,13 +26793,15 @@
 
 
 /***/ },
-/* 254 */
+/* 254 */,
+/* 255 */,
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(255);
+	var content = __webpack_require__(257);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(253)(content, {});
@@ -26788,8 +26810,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./app.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./app.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./app.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./app.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -26799,7 +26821,7 @@
 	}
 
 /***/ },
-/* 255 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(252)();
@@ -26807,7 +26829,7 @@
 
 
 	// module
-	exports.push([module.id, ".page-title {\n  margin-top: 2.5rem;\n  margin-bottom: 2.5rem;\n}\n\ninput[type=search] {\n  box-shadow: none;\n}\n", ""]);
+	exports.push([module.id, ".page-title {\n  color: #555;\n  margin-top: 2.5rem;\n  margin-bottom: 2.5rem; }\n\ninput[type=search] {\n  box-shadow: none; }\n", ""]);
 
 	// exports
 
