@@ -58,7 +58,7 @@
 
 	var Main = __webpack_require__(216);
 	var Weather = __webpack_require__(218);
-	var About = __webpack_require__(240);
+	var About = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"About\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	var Examples = __webpack_require__(241);
 
 	ReactDOM.render(React.createElement(
@@ -26157,24 +26157,7 @@
 
 
 /***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var About = function About(props) {
-	  return React.createElement(
-	    'h3',
-	    null,
-	    'About Component'
-	  );
-	};
-
-	module.exports = About;
-
-/***/ },
+/* 240 */,
 /* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
