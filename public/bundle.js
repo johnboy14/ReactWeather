@@ -112,6 +112,8 @@
 	__webpack_require__(250);
 	$(document).foundation();
 
+	__webpack_require__(254);
+
 	ReactDOM.render(React.createElement(
 	  Router,
 	  { history: hasHistory },
@@ -24916,7 +24918,7 @@
 	            React.createElement(
 	              "li",
 	              null,
-	              React.createElement("input", { type: "search", placeholder: "Search weather" })
+	              React.createElement("input", { type: "search", placeholder: "Search weather by city" })
 	            ),
 	            React.createElement(
 	              "li",
@@ -25004,7 +25006,7 @@
 	      null,
 	      React.createElement(
 	        'h1',
-	        { className: 'text-center' },
+	        { className: 'text-center page-title' },
 	        'Get Weather'
 	      ),
 	      React.createElement(WeatherForm, { onSearch: this.handleSearch }),
@@ -25043,7 +25045,7 @@
 	      React.createElement(
 	        "form",
 	        { onSubmit: this.onFormSubmit },
-	        React.createElement("input", { type: "text", placeholder: "Enter city name", ref: "location" }),
+	        React.createElement("input", { type: "search", placeholder: "Search weather by city name", ref: "location" }),
 	        React.createElement(
 	          "button",
 	          { className: "button expanded hollow" },
@@ -26353,7 +26355,7 @@
 	    { className: "text-center" },
 	    React.createElement(
 	      "h1",
-	      null,
+	      { className: "page-title" },
 	      "About"
 	    ),
 	    React.createElement(
@@ -26385,7 +26387,7 @@
 	    null,
 	    React.createElement(
 	      "h1",
-	      { className: "text-center" },
+	      { className: "text-center page-title" },
 	      "Examples"
 	    ),
 	    React.createElement(
@@ -26768,6 +26770,46 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(255);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(253)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./app.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./app.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(252)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".page-title {\n  margin-top: 2.5rem;\n  margin-bottom: 2.5rem;\n}\n\ninput[type=search] {\n  box-shadow: none;\n}\n", ""]);
+
+	// exports
 
 
 /***/ }
